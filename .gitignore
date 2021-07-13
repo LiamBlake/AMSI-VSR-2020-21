@@ -1,8 +1,10 @@
 data/
 proposal/
 notes/
+checkerboard_code/
 
 *-converted-to.pdf
+*.rtf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
