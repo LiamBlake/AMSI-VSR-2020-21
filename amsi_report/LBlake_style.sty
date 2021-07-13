@@ -1,0 +1,237 @@
+\ProvidesPackage{LBlake_style}[24/08/2019]
+
+% packages
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{listings}
+\RequirePackage{enumitem}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+%\pgfplotsset{compat=1.10}
+\RequirePackage{standalone}
+%\RequirePackage[framed]{matlab-prettifier}  % matlab code
+\RequirePackage{bm}	% vectors
+\RequirePackage{refcheck}
+\RequirePackage{minibox}
+\RequirePackage{mdframed}
+%\RequirePackage{esint}
+%\RequirePackage{cite}
+\norefnames
+\nocitenames
+
+\RequirePackage{url}
+\RequirePackage{commath}
+
+\usepackage[labelfont=bf]{caption}
+
+% Font
+%\RequirePackage{tgbonum}
+%\RequirePackage[T1]{fontenc}
+% Change font to sans serif
+\renewcommand{\familydefault}{\sfdefault}
+% Megalovania intensifies 
+
+
+% override there exists and for all
+\let\oldexists\exists
+\let\oldforall\forall
+\renewcommand{\exists}{\oldexists\,}
+\renewcommand{\forall}{\oldforall\,}
+
+
+\DeclareRobustCommand{\marker}[1]{\textcolor{red}{#1}}
+
+\newcommand{\refe}[1]{(\ref{#1})}
+
+
+% Gibbs
+\newcommand{\gibbs}[2]{#1\bm{i} + #2\bm{j}}
+\newcommand{\gibbsz}[3]{#1\bm{i} + #2\bm{j} + #3\bm{k}}
+
+
+% matlab code
+%\lstset{
+%  style              = Matlab-editor,
+%  basicstyle         = \mlttfamily,
+%  escapechar         = ",
+%  mlshowsectionrules = true,
+%}
+% Use \lstinputlisting{filename.m} to include external files
+
+% augmented matrices
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+% in align text
+\newcommand{\rea}[1]{\qquad \qquad \left(\text{#1}\right)}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+%boxes
+
+
+% conditional probability
+\newcommand{\conp}[2]{P\left(#1 \, \middle| \, #2 \right)}
+
+
+% inverse trig
+\newcommand{\arcsec}{\operatorname{arcsec}}
+\newcommand{\arccot}{\operatorname{arccot}}
+\newcommand{\arccsc}{\operatorname{arccsc}}
+
+% inner product
+\newcommand{\inprod}[1]{\langle #1 \rangle}
+
+% matrix trace
+\newcommand{\tr}{\operatorname{tr}}
+
+% dot product
+\makeatletter
+\newcommand*\dotp{\mathpalette\dotp@{.5}}
+\newcommand*\dotp@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+
+% COMMANDS MADE REDUNDANT BY COMMATH
+% norm
+%\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% absolute
+%\newcommand{\abs}[1]{\left|#1\right|}
+
+% R3 basis vectors
+\newcommand{\vecbas}[3]{#1\,\bm{i} + #2\,\bm{j} + #3\,\bm{k}}
+
+
+%\newcommand{\dd}{\text{d}}
+	
+
+% derivative
+%\makeatletter
+%	\DeclareRobustCommand{\der}[1]{%
+%	  \@ifnextchar\bgroup{\@der{#1}}{\@der{}{#1}}}
+%	\newcommand{\@der}[2]{\frac{\dd #1}{\dd #2}}
+%	\makeatother
+	
+
+% vector calculus
+	% partial derivative
+%	\makeatletter
+%	\DeclareRobustCommand{\pder}[1]{%
+%	  \@ifnextchar\bgroup{\@pder{#1}}{\@pder{}{#1}}}
+	
+%	\newcommand{\@pder}[2]{
+%	\relax\if@display
+%		\frac{\partial#1}{\partial#2}
+%	\else
+%		\left.\partial#1\middle/\partial#2\right.
+%	\fi}
+%	\makeatother
+	
+	% nabla
+	\newcommand{\vder}{\nabla}
+	
+	% div
+	\newcommand{\vdiv}{\vder \dotp}
+
+	% curl
+	\newcommand{\curl}{\vder \times}
+
+
+% sets
+%\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\renewcommand{\P}{\mathbb{P}}
+
+% pure maths stuff
+\newmdtheoremenv{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+%\newtheorem{theorem}{Theorem}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{result}[theorem]{Result}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{defn}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}{Example}
+\newtheorem{exercise}{Exercise}
+\newtheorem{ex}{Exercise}
+\newtheorem{construction}{Construction}
+\renewenvironment{proof}{\noindent{\bfseries Proof}\hspace{0.5em}}{ \null  \hfill $\square$ \par}
+\newtheorem{axiom}{Axiom}
+
+% stats 
+
+% probability
+\newcommand{\backP}{\P}
+\renewcommand{\P}[1]{\text{P}\left(#1\right)}
+
+\DeclarePairedDelimiter\parentheses{\lparen}{\rparen}
+\newcommand{\var}[1]{\operatorname{Var} \left(#1\right)}
+\newcommand{\avg}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\cov}[1]{\operatorname{Cov} \parentheses{#1}}
+\newcommand{\sd}[1]{\operatorname{sd} \parentheses{#1}}
+\newcommand{\cor}[1]{\operatorname{cor} \parentheses{#1}}
+\newcommand{\mse}[2]{\operatorname{MSE}_{\,#1} \parentheses{#2}}
+
+\newcommand{\hypothesis}[2]{
+	\begin{align*}
+		& H_0: \qquad #1,\\
+		& H_a: \qquad #2,
+	\end{align*}
+}
+
+\newcommand{\hypothesisd}[2]{
+	\begin{align*}
+		& H_0: \qquad #1,\\
+		& H_a: \qquad #2.
+	\end{align*}
+}
+
+
+
+% No indents
+%\setlength\parindent{0pt}
+
+% Spacer
+\newcommand{\spacer}{\vspace{5mm}}
+\newcommand{\Spacer}{\vspace{10mm}}
+\newcommand{\Spacerr}{\vspace{15mm}}
+\newcommand{\SPACER}{\vspace{20mm}}
+
+\newcommand{\bigO}[1]{\mathcal{O}\left(#1\right)}
+
+% Fancy Matlab name
+\newcommand{\Matlab}{\textsc{Matlab}}
+
+%% Integrals - space between argument and differential
+%\let\oldint\int
+%\renewcommand{\int}[2]{\oldint{#1\,\diff #2}}
+
+
+\renewcommand{\th}{^{\text{th}}}
+\newcommand{\rd}{^{\text{rd}}}
+\newcommand{\st}{^{\text{st}}}
+
+
+% Case listing environment
+\newcounter{casenum}
+\newenvironment{caseof}{\setcounter{casenum}{1}}{\vskip.5\baselineskip}
+\newcommand{\case}[2]{\vskip.5\baselineskip\par\noindent {\bfseries Case \arabic{casenum}:} #1\\#2\addtocounter{casenum}{1}}
+
+
+% Bracketed fractions
+\newcommand{\bfrac}[2]{\left(\frac{#1}{#2}\right)}
+
+% Images
+\newcommand{\img}[2]{#1^{-1}\left(#2\right)}
+
+\endinput

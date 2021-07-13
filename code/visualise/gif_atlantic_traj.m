@@ -1,0 +1,32 @@
+% Required directories
+addpath visualise
+
+conFigure(29, 4/3);
+
+% Load data
+load('../data/atlantic_res.mat')
+load('../data/atlantic_traj_X.mat')
+load('../data/atlantic_traj_Y.mat')
+
+h = figure;
+axis tight manual
+filename = '../figures/atlantic.gif';
+for t = 1:(ocean.res.Nt)
+    % Draw plot for y = x.^n
+    plot(X(:,:,t), Y(:,:,t), 'b.');
+    xlim([ocean.res.x_ip(1) ocean.res.x_ip(end)]); ylim([ocean.res.y_ip(1) ocean.res.y_ip(end)]);
+    xlabel("Longitude", "Interpreter", "LaTeX"); ylabel("Latitude", "Interpreter", "LaTeX");
+    drawnow
+    
+    % Capture the plot as an image
+    frame = getframe(h);
+    im = frame2im(frame);
+    [imind,cm] = rgb2ind(im,256);
+    
+    % Write to the GIF File
+    if t == 1
+        imwrite(imind,cm,filename,'gif', 'Loopcount',inf);
+    else
+        imwrite(imind,cm,filename,'gif','WriteMode','append');
+    end
+end

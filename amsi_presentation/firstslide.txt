@@ -1,0 +1,17 @@
+
+This talk concerns fluid flow, such as the example here, called the double gyre flow
+THese are particles being pushed around by the flow, and although there is a lot of chaotic mixing going on here,
+we can distinguish some structure.
+
+We are interested in ways in which you can extract this structure mathematically, which is what the area of Lagrangian coherent 
+structures is all about.
+
+
+
+
+
+
+
+FTLE and LAVD are small scale structure
+Temperature gave large scale structure and 
+combination gave both when combined 
